@@ -1,6 +1,5 @@
 #include <glfw/glfw3.h>
 #include <yyjson.h>
-#include <stdio.h>
 #include <string>
 #include <unordered_map>
 #include "config.h"
@@ -99,10 +98,10 @@ namespace Config {
         void loadGraphicsConfig (GraphicsConfig &config, yyjson_val *graphicsObj) {
             if (!graphicsObj) return;
 
-            config.width = get_int(graphicsObj, "width", config.width);
-            config.height = get_int(graphicsObj, "height", config.height);
-            config.vsync = get_bool(graphicsObj, "vsync", config.vsync);
-            config.fullscreen = get_bool(graphicsObj, "fullscreen", config.fullscreen);
+            config.width = get_int(graphicsObj, "width", 1280);
+            config.height = get_int(graphicsObj, "height", 720);
+            config.vsync = get_bool(graphicsObj, "vsync", true);
+            config.fullscreen = get_bool(graphicsObj, "fullscreen", false);
         }
 
         void loadInputConfig (InputConfig &config, yyjson_val *inputObj) {
@@ -206,7 +205,6 @@ namespace Config {
         yyjson_doc *doc = yyjson_read_file(path, 0, NULL, NULL);
         
         if (!doc) {
-            printf("Cannot read file: %s", path);
             return false;
         }
 

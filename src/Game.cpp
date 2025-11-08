@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include "Game.h"
 
+#include <stdio.h>
+
 namespace Game {
     bool init (GameState &state) {
         // Load config
         
-        // Load default first in case any configuration is missing
-        Config::loadConfigDefault(state.config);
         // Then load from file if it exists
-        Config::loadConfig(state.config, "config.json");
+        if (!Config::loadConfig(state.config, "config.json"))
+        {
+            printf("No config file found, using defaults\n");
+            Config::loadConfigDefault(state.config);
+        }
         // Save config
+        printf("Saving config\n");
         Config::saveConfig(state.config, "config.json");
 
         // Window
