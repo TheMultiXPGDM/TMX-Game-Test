@@ -2,6 +2,7 @@
 
 #include "Rendering/Window.h"
 #include <glad/glad.h>
+#include <stdio.h>
 
 namespace Window
 {
@@ -18,12 +19,13 @@ namespace Window
 
     bool init(Window &window, int width, int height, const char* title)
     {
+        printf("Initializing GLFW\n");
         if (!glfwInit())
         {
             errorMsg("Failed to initialize GLFW");
             return false;
         }
-
+        printf("Creating GLFW window\n");
         window.handle = glfwCreateWindow(width, height, title, NULL, NULL);
         window.width = width;
         window.height = height;
@@ -39,6 +41,8 @@ namespace Window
         glfwSetWindowUserPointer(window.handle, &window);
         glfwMakeContextCurrent(window.handle);
 
+        printf("Initializing GLAD\n");
+
         // load GLAD immediately after context is current
         if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
         {
@@ -49,6 +53,8 @@ namespace Window
         }
 
         glfwSetFramebufferSizeCallback(window.handle, framebuffer_size_callback);
+
+        printf("GLFW initialized successfully!\n");
 
         return true;
     }

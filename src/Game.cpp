@@ -6,16 +6,18 @@
 namespace Game {
     bool init (GameState &state) {
         // Load config
-        
-        // Then load from file if it exists
-        if (!Config::loadConfig(state.config, "config.json"))
+        printf("Loading config\n");
+        if (Config::loadConfig(state.config, "config.json"))
         {
+            printf("Loaded config from file\n");
+        }
+        else {
             printf("No config file found, using defaults\n");
             Config::loadConfigDefault(state.config);
+            // Save config
+            printf("Saving config\n");
+            Config::saveConfig(state.config, "config.json");
         }
-        // Save config
-        printf("Saving config\n");
-        Config::saveConfig(state.config, "config.json");
 
         // Window
         if (!Window::init (state.window, state.config.graphics.width, state.config.graphics.height, "TMX Game Test"))
