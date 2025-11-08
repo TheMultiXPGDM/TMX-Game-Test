@@ -15,7 +15,7 @@ namespace TimeManager {
 
     void update(TimeState& time) {
         time.currentTime = glfwGetTime();
-        time.deltaTime = time.currentTime - time.previousTime;
+        time.deltaTime = (float) (time.currentTime - time.previousTime);
         time.previousTime = time.currentTime;
         time.accumulator += time.deltaTime;
     }
@@ -24,7 +24,7 @@ namespace TimeManager {
         return time.deltaTime;
     }
 
-    float getCurrentTime(const TimeState& time) {
+    double getCurrentTime(const TimeState& time) {
         return time.currentTime;
     }
 

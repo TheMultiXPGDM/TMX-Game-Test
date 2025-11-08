@@ -36,6 +36,7 @@ namespace Window
             return false;
         }
 
+        glfwSetWindowUserPointer(window.handle, &window);
         glfwMakeContextCurrent(window.handle);
 
         // load GLAD immediately after context is current

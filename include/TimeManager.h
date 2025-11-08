@@ -15,7 +15,7 @@ namespace TimeManager
     void update(TimeState& time);
     float getDeltaTime(const TimeState& time);
     float getFixedDeltaTime(const TimeState& time);
-    float getCurrentTime(const TimeState& time);
+    double getCurrentTime(const TimeState& time);
     float getAccumulator(const TimeState& time);
     void setFixedTimeStep(TimeState& time, float timeStep);
 }
