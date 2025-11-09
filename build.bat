@@ -7,6 +7,4 @@ cd build
 cmake ..
 cmake --build . --config Release
 
-echo ✅ Build completed successfully!
-echo 📦 Executable location: %cd%\Release\
 pause

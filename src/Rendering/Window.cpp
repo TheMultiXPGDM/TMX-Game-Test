@@ -25,6 +25,7 @@ namespace Window
             errorMsg("Failed to initialize GLFW");
             return false;
         }
+
         printf("Creating GLFW window\n");
         window.handle = glfwCreateWindow(width, height, title, NULL, NULL);
         window.width = width;
