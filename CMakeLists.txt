@@ -37,8 +37,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/i
 target_link_libraries(${PROJECT_NAME} PRIVATE yyjson glm glfw glad)
 
 # Set executable properties
-if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    if (WIN32) 
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Release" OR "${CMAKE_BUILD_TYPE}" STREQUAL "")
+    if (WIN32)
         set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/ENTRY:mainCRTStartup")
         set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE ON)
     endif()
